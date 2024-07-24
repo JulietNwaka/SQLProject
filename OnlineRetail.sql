@@ -74,16 +74,17 @@ SELECT * FROM store;
 	SELECT Customer_Name, SUM(Sales * Quantity) AS Top_Customer
 	FROM store
 	GROUP BY 1
-	ORDER BY 1 ASC;
+	ORDER BY 1 ASC
+	LIMIT 10;
 
--- who are the customer that made over 20 transaction?
+-- who are the customer that made at least 20 transaction?
 	SELECT Customer_Name, COUNT(*) AS total_transaction
 	FROM store AS s
 	INNER JOIN rderInfo AS o
 	ON s.customer_id = o.customer_id
 	GROUP BY 1,2
-	HAVING COUNT(*)  >20
-	LIMIT 10;
+	HAVING COUNT(*)  >=20;
+	
 
 
 -- Calculate the total revenue made in 2021
