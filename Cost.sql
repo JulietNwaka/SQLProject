@@ -1,5 +1,3 @@
-
-
 -- How can you retrieve all the information from the 3 tables?
 
 SELECT * FROM cd.bookings;
@@ -9,8 +7,27 @@ SELECT * FROM cd.facilities;
 -- You want to print out a list of all of the facilities and their cost to members. How would you retrieve 
 -- a list of only facility names and costs?
 
-SELECT name, membercost
-FROM cd.facilities;
+SELECT name, membercost FROM cd.facilities;
+
+--  retrieve the top  5 facilities that are mostly booked
+
+SELECT f.name, COUNT(name) as Total_Bookings
+FROM cd.facilities as f
+INNER JOIN cd.bookings as b
+ON f.facid = b.facid
+GROUP BY f.name
+ORDER BY 2 DESC
+LIMIT 5;
+
+-- least of top members by numbers of bookings
+ 
+SELECT m.firstname, m.surname, COUNT(b.memid)
+FROM cd.bookings as b
+INNER JOIN cd.members AS m
+ON b.memid = m.memid
+GROUP BY 1,2
+ORDER BY 3 DESC
+LIMIT 5;
 
 -- How can you produce a list of facilities that charge a fee to members?
 SELECT *
