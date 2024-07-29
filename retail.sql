@@ -106,21 +106,27 @@ select cus_id from payment where paid > 6400;
 select cus_id, paid from payment
 where paid > (select avg(paid) from payment)
 
--- select the name of the customer with the highest payment
+-- select the customer id with the highest payment
 select cus_id, paid from payment
 where paid = (select max(paid) from payment);
 
--- solution 2
-select c.customer_name, max(paid)
+-- select the customer details with the highest payment
+select c.customer_name, c.cus_id, max(paid)
 from customer as c
 inner join payment as p
 on c.cus_id = p.cus_id
-group by 1
-order by 2 desc
+group by 1,2
+order by 3 desc
 limit 1;
 
--- check the second customer with the highest payment
+-- select the customer info with the highest payment. step 2
+select c.customer_name, p.cus_id, p.paid 
+from payment as p
+inner join customer as c
+on p.cus_id = c.cus_id
+where paid = (select max(paid) from payment);
 
+-- check the second customer with the highest payment
 select c.customer_name, max(paid)
 from customer as c
 inner join payment as p
