@@ -1,8 +1,9 @@
+-- This queries or psql are run on a linux terminal
 -- Create customer table
 create database retailer;
 
 -- connect to retailer database
-use retailer;
+\c retailer
 
 -- create Customer Table
 CREATE TABLE customer
