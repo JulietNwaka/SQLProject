@@ -1,4 +1,4 @@
--- This queries or psql are run on a linux terminal
+-- These queries or psql are executed on a Linux terminal
 -- Create customer table
 create database retailer;
 
